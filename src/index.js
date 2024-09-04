@@ -3,9 +3,15 @@ import './style.css';
 import { Tree } from './tree.js';
 
 
-let testArray=[1,3,3,4,2];
+let testArray=[1,3,3,4,2,7];
 let testTree= new Tree(...testArray);
 
+console.log(testTree.root);
+
+testTree.insert(5);
+console.log(testTree.root);
+
+testTree.delete(1);
 console.log(testTree.root);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
