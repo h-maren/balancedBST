@@ -14,6 +14,8 @@ console.log(testTree.root);
 testTree.delete(1);
 console.log(testTree.root);
 
+console.log(testTree.find(4));
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
       return;

@@ -91,6 +91,23 @@ class Tree {
             currentNode.data = temp.data;
         }
     }
+    find(value){
+        let parentNode=null;
+        let currentNode=this.root;
+        while(currentNode !==null && currentNode.data !== value){
+            parentNode=currentNode;
+            if(value < currentNode.data){
+                currentNode=currentNode.leftNode;
+            } else {
+                currentNode=currentNode.rightNode;
+            }
+        }
+        //if value is not present
+        if(currentNode===null) {
+            return;
+        }
+        return currentNode;
+    }
 }
 
 export { Tree };
