@@ -17,7 +17,7 @@ console.log(testTree.root);
 
 console.log(testTree.find(4));
 
-let multArray=testTree.levelOrder(triple);
+let multArray=testTree.postOrder(triple);
 console.log(multArray);
 console.log(testTree.levelOrder.name);
 

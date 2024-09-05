@@ -110,7 +110,7 @@ class Tree {
     }
     levelOrder(callback){
         try {
-            if(callback.name=='levelOrder'){
+            if(!callback){
                 console.log('check!');
                 throw new Error('Callback is not provided!');
             }
@@ -144,6 +144,65 @@ class Tree {
         catch(e) {
             console.log(e);
         }
+    }
+    inOrder(callback){
+        let result=[];
+        let queue=[];
+        let rootNode=this.root;
+        if(rootNode===null){
+            return;
+        }
+        let currentNode=rootNode;
+        while(currentNode||queue.length){
+            while(currentNode){
+                queue.push(currentNode);
+                currentNode=currentNode.leftNode;
+            }
+            let resultNode=queue.pop();
+            let resultValue=callback(resultNode.data);
+            result.push(resultValue);
+            currentNode=resultNode.rightNode;
+        }
+        return result;
+    }
+    preOrder(callback){
+        let result=[];
+        let queue=[];
+        let rootNode=this.root;
+        if(rootNode===null){
+            return;
+        }
+        let currentNode=rootNode;
+        queue.push(currentNode);
+        while(queue.length){
+            let resultNode=queue.pop();
+            let resultValue=callback(resultNode.data);
+            result.push(resultValue);
+            if(resultNode.rightNode){
+                queue.push(resultNode.rightNode);
+            }
+            if(resultNode.leftNode){
+                queue.push(resultNode.leftNode);
+            }
+        }
+        return result;
+    }
+    postOrder(callback){
+        let valueOrder=[];
+        
+        function postOrderTraverse(node){
+            if(!node) {
+                return;
+            }
+            postOrderTraverse(node.leftNode);
+            postOrderTraverse(node.rightNode);
+            valueOrder.push(node.data);
+            return valueOrder;
+        }
+        postOrderTraverse(this.root);
+        let result=valueOrder.map(callback);
+
+        return result;
     }
 }
 
