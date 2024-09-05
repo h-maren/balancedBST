@@ -108,6 +108,43 @@ class Tree {
         }
         return currentNode;
     }
+    levelOrder(callback){
+        try {
+            if(callback.name=='levelOrder'){
+                console.log('check!');
+                throw new Error('Callback is not provided!');
+            }
+            console.log(callback.name);
+            let result=[];
+            let queue=[];
+            let rootNode=this.root;
+            queue.push(rootNode)
+            if(rootNode===null){
+                return;
+            }
+            while(queue.length){
+                let level=[];
+                let levelSize=queue.length;
+                for(let i=0; i<levelSize; i++){
+                    let currentNode=queue.shift();
+                    let nodeResult=callback(currentNode.data);
+                    level.push(nodeResult);
+                    if(currentNode.leftNode) {
+                        queue.push(currentNode.leftNode);
+                    }
+                    if(currentNode.rightNode) {
+                        queue.push(currentNode.rightNode)
+                    }
+                }
+                result.push(level);
+            }
+        return result;
+        } 
+        //NEED TO FIX Error
+        catch(e) {
+            console.log(e);
+        }
+    }
 }
 
 export { Tree };

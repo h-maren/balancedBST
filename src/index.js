@@ -1,6 +1,7 @@
 import './style.css';
 
 import { Tree } from './tree.js';
+import { Node } from './node.js';
 
 
 let testArray=[1,3,3,4,2,7];
@@ -15,6 +16,13 @@ testTree.delete(1);
 console.log(testTree.root);
 
 console.log(testTree.find(4));
+
+let multArray=testTree.levelOrder(triple);
+console.log(multArray);
+console.log(testTree.levelOrder.name);
+
+let errArray=testTree.levelOrder;
+console.log(errArray);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
@@ -31,4 +39,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
   prettyPrint(testTree.root);
 
-console.log("testing!");
+
+function triple(value){
+  let result=value*3;
+  return result;
+}
+
