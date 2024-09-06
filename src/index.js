@@ -17,11 +17,14 @@ console.log(testTree.root);
 
 console.log(testTree.find(4));
 
-let multArray=testTree.postOrder(triple);
+let multArray=testTree.levelOrder;
 console.log(multArray);
 console.log(testTree.levelOrder.name);
 
-let errArray=testTree.levelOrder;
+console.log(testTree.depth(7));
+console.log(testTree.height(4));
+
+let errArray=testTree.levelOrder
 console.log(errArray);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {

@@ -5,5 +5,5 @@ class Node {
         this.rightNode=rightNode;
     }
 }
-  
+ 
   export { Node };

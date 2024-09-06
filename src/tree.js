@@ -204,6 +204,62 @@ class Tree {
 
         return result;
     }
+    depth(node){
+        let root=this.root;
+        if(root===null){
+            return;
+        }
+        let queue=[];
+        queue.push(root);
+        let level=0;
+        let depth=-1;
+        while(queue.length>0){
+            for(let i=0; i<queue.length; i++){
+                let currentNode=queue.shift();
+                if(currentNode.data===node){
+                    depth=level;
+                }
+                if(currentNode.leftNode!== null){
+                    queue.push(currentNode.leftNode);
+                }
+                if(currentNode.rightNode!== null){
+                    queue.push(currentNode.rightNode);
+                }
+            }
+            level++;
+        }
+        return depth;
+    }
+    height(nodeValue){
+        let rootNode=this.find(nodeValue);
+        if(rootNode===null){
+            return 0;
+        }
+        let height=-1;
+        let queue=[];
+        queue.push(rootNode);
+        queue.push(null);
+        while(queue.length>0){
+            let tempNode=queue.shift();
+            //increment height every time null is encountered
+            if(tempNode===null){
+               height++;
+               if(queue.length>0){
+                //null is counter for height
+                queue.push(null);
+               }
+            }
+            else {
+                if(tempNode.leftNode){
+                    queue.push(tempNode.leftNode);
+                }
+                if(tempNode.rightNode){
+                    queue.push(tempNode.rightNode)
+                }
+            }
+        }
+        return height;
+    }
 }
 
 export { Tree };
