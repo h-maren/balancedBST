@@ -260,6 +260,49 @@ class Tree {
         }
         return height;
     }
+    isBalanced(){
+        let rootNode=this.root;
+        if(rootNode===null){
+            return true;
+        }         
+        function getDepth(node) {
+            if (node === null) {
+              return 0;
+            }
+            const leftDepth = getDepth(node.leftNode);
+            const rightDepth = getDepth(node.rightNode);
+            return Math.max(leftDepth, rightDepth) + 1;
+        }
+        function checkBalance(node){
+            if(node===null){
+                return true;
+            }
+            let leftDepth=getDepth(node.leftNode);
+            let rightDepth=getDepth(node.rightNode);
+            let heightDiff=Math.abs(leftDepth-rightDepth);
+            if(heightDiff>1){
+                return false;
+            }
+            return checkBalance(node.leftNode) && checkBalance(node.rightNode);
+        }
+        return checkBalance(rootNode);
+    }
+    //NEED TO FIX
+    rebalance(){
+        function storeNodes(root,nodes){
+            if(root==null){
+                return;
+            }
+            storeNodes(root.leftNodes,nodes);
+            nodes.push(root);
+            storeNodes(root.rightNodes,nodes);
+            return nodes;
+        }
+        let nodes=[];
+        let output=storeNodes(this.root,nodes);
+        return output;
+
+    }
 }
 
 export { Tree };

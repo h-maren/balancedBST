@@ -24,6 +24,9 @@ console.log(testTree.levelOrder.name);
 console.log(testTree.depth(7));
 console.log(testTree.height(4));
 
+console.log(testTree.isBalanced());
+console.log(testTree.rebalance());
+
 let errArray=testTree.levelOrder
 console.log(errArray);
 
