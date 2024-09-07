@@ -289,19 +289,25 @@ class Tree {
     }
     //NEED TO FIX
     rebalance(){
-        function storeNodes(root,nodes){
-            if(root==null){
-                return;
-            }
-            storeNodes(root.leftNodes,nodes);
-            nodes.push(root);
-            storeNodes(root.rightNodes,nodes);
-            return nodes;
+        //create array in order
+        let result=[];
+        let queue=[];
+        let rootNode=this.root;
+        if(rootNode===null){
+            return;
         }
-        let nodes=[];
-        let output=storeNodes(this.root,nodes);
-        return output;
-
+        let currentNode=rootNode;
+        while(currentNode||queue.length){
+            while(currentNode){
+                queue.push(currentNode);
+                currentNode=currentNode.leftNode;
+            }
+            let resultNode=queue.pop();
+            result.push(resultNode.data);
+            currentNode=resultNode.rightNode;
+        }
+        console.log(result);
+        return new Tree(...result);
     }
 }
 

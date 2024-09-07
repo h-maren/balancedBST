@@ -1,6 +1,6 @@
 import './style.css';
 
-import { Tree } from './tree.js';
+import { Tree, rebalance } from './tree.js';
 import { Node } from './node.js';
 
 
@@ -25,7 +25,8 @@ console.log(testTree.depth(7));
 console.log(testTree.height(4));
 
 console.log(testTree.isBalanced());
-console.log(testTree.rebalance());
+let reBalanceTree=testTree.rebalance();
+console.log(reBalanceTree.isBalanced());
 
 let errArray=testTree.levelOrder
 console.log(errArray);
@@ -34,17 +35,17 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
       return;
     }
-    if (node.right !== null) {
+    if (node.rightNode !== null) {
       prettyPrint(node.rightNode, `${prefix}${isLeft ? "│   " : "    "}`, false);
     }
     console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
+    if (node.leftNode !== null) {
       prettyPrint(node.leftNode, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   };
 
   prettyPrint(testTree.root);
-
+  prettyPrint(reBalanceTree.root);
 
 function triple(value){
   let result=value*3;
